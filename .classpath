@@ -13,5 +13,7 @@
 	<classpathentry kind="lib" path="libraries/jboss-logging-annotations-1.2.0.Beta1.jar"/>
 	<classpathentry kind="lib" path="libraries/jboss-transaction-api_1.2_spec-1.0.0.Final.jar"/>
 	<classpathentry kind="lib" path="libraries/ojdbc6.jar"/>
+	<classpathentry kind="lib" path="libraries/org.osgi.compendium-4.3.1.jar"/>
+	<classpathentry kind="lib" path="libraries/org.osgi.core-4.3.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
