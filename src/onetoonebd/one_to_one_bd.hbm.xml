@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="onetoonebd.Employee" table="EMPLOYEES">
+        <id name="id" type="int"  column="ID">
+            <generator class="native"></generator>
+        </id>
+        <property name="name" type="java.lang.String"  length="30" column="NAME" />
+        <many-to-one name="membership" 
+                     column="membership" 
+                     class="onetoonebd.Membership" 
+                     unique="true"
+                     cascade="all"
+                     >
+        </many-to-one>
+    </class>
+    
+    <class name="onetoonebd.Membership" table="MEMBERSHIPS">
+        <id name="id" type="int"  column="ID">
+            <generator class="native"></generator>
+        </id>
+        <property name="type" type="java.lang.String"  length="30" column="TYPE" />
+        <one-to-one name="employee"  property-ref="membership" />
+    </class>
+    
+    
+</hibernate-mapping>
