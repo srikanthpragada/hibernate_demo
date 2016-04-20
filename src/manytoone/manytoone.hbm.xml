@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="manytoone.Employee" table="Employees">
+    <id name="id">
+      <generator class="native"/>
+    </id>
+    <property length="20" name="name"/>
+    <many-to-one cascade="all" class="manytoone.Department" name="department"/>
+  </class>
+  <class name="manytoone.Department">
+    <id name="id">
+      <generator class="native"/>
+    </id>
+    <property length="20" name="name"/>
+    <set inverse="true" name="employees">
+      <key column="department"/>
+      <one-to-many class="manytoone.Employee"/>
+    </set>
+  </class>
+</hibernate-mapping>

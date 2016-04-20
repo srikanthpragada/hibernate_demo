@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="manytomany.Employee">
+    <id name="id">
+      <generator class="native"/>
+    </id>
+    <property length="20" name="name"/>
+    <set cascade="all" name="projects" table="EmployeeProjects">
+      <key column="employeeid"/>
+      <many-to-many class="manytomany.Project" column="projectid"/>
+    </set>
+  </class>
+  <class name="manytomany.Project">
+    <id name="id">
+      <generator class="native"/>
+    </id>
+    <property length="20" name="title"/>
+    <set inverse="true" name="employees" table="EmployeeProjects">
+      <key column="projectid"/>
+      <many-to-many class="manytomany.Employee" column="employeeid"/>
+    </set>
+  </class>
+</hibernate-mapping>

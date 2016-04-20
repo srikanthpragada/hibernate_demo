@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="query.Title" table="Titles">
+    <id name="titleid">
+      <generator class="native"/>
+    </id>
+    <property length="50" name="title"/>
+    <property name="price" type="integer"/>
+    <many-to-one cascade="all" class="query.Subject" column="subcode" name="subject"/>
+  </class>
+  <class name="query.Subject" table="Subjects">
+    <id name="subcode">
+      <generator class="assigned"/>
+    </id>
+    <property name="subname"/>
+    <set inverse="true" name="titles">
+      <key column="subcode"/>
+      <one-to-many class="query.Title"/>
+    </set>
+  </class>
+  <query name="costlytitles">
+              from Title t where t.price &gt; 500
+  </query>
+  <sql-query name="discounts">
+         <return-scalar column="title" type="string"/>
+         <return-scalar column="price" type="double"/>
+         <return-scalar column="discount" type="double"/>
+         
+           SELECT title, price, least(100, price * 0.20) discount
+           from titles
+         
+   </sql-query>
+</hibernate-mapping>

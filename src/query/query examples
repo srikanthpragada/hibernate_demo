@@ -1,0 +1,20 @@
+from Title
+from Title t  where t.price> 500
+select title, subject.subname from Title
+select t.title, s.subname from Title as t inner join t.subject as s
+select  s.subname, t.title from  Title t  right join  t.subject s
+
+from Title t where t.subject.subname like 'A%'
+select max(price) from Title
+select  t.subject.subname,  max( t.price) from Title t group by t.subject.subname
+
+select  new List(  t.title, t.price) from Title t
+select   upper(t.title)  || ' - ' ||  upper(t.subject.subname) from Title t
+
+from Title t  inner join  t.subject s where t.price > 500 or  s.subname like 'A%'
+
+select c.name from Course c where   size(c.subjects)  > 2
+
+select c.name from Course c where  'SQL' in  elements (c.subjects)
+
+select  title, price from Title where  price > ( select avg(price) from Title )
